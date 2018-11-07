@@ -1,0 +1,20 @@
+<%= form_with model: @climber, local: true do |form| %>
+  <% if @climber.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+        <%= pluralize(@climber.errors.count, "error") %> Prohibited This Climber From Being Saved:
+      </h4>
+      <ul>
+        <% @climber.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%=  form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <%= form.submit %>
+<% end %>
+

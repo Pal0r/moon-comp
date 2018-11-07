@@ -1,0 +1,19 @@
+<h5>Climbers</h5>
+<table>
+  <tr>
+    <th>Name</th>
+    <th colspan="3"></th>
+  </tr>
+  <% @climbers.each do |climber| %>
+    <tr>
+      <td><%= climber.name %></td>
+      <td><%= link_to 'Show', climber_path(climber) %></td>
+      <td><%= link_to 'Edit', edit_climber_path(climber) %></td>
+      <td><%= link_to 'Destroy', climber_path(climber),
+                      method: :delete,
+                      data: {confirm: "Are you sure?"}
+      %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Add Climber', new_climber_path %>

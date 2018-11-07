@@ -1,0 +1,9 @@
+<li>
+  <strong><%= tick.name %></strong><br>
+  Date: <%= tick.send_date %> <br>
+  Grade: <%= tick.grade %> <br>
+  <%= link_to 'Delete Tick', [tick.climber, tick],
+              method: :delete,
+              data: {confirm: "Are you sure?"}
+  %>
+</li>

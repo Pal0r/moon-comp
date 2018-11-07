@@ -1,0 +1,15 @@
+<%= form_with(model: [@climber, @climber.ticks.build ],
+              local: true) do |form| %>
+  <h6>Add A Tick:</h6>
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <br>
+    <%= form.label :send_date %>
+    <%= form.date_field :send_date %>
+    <br>
+    <%= form.label :grade %>
+    <%= form.text_field :grade %>
+  </p>
+  <%= form.submit %>
+<% end %>

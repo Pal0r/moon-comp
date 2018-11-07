@@ -1,0 +1,11 @@
+<h4>Climber Detail</h4>
+<p>
+  <strong>Name: </strong>
+  <%= @climber.name %>
+</p>
+<%= render 'tick_list' %>
+<%= render 'ticks/form' %>
+
+<%= link_to 'Add Another Climber', new_climber_path %>
+<%= link_to 'Edit', edit_climber_path(@climber) %>
+<%= link_to 'View Climbers', climbers_path %>

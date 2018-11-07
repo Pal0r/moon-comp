@@ -4,12 +4,66 @@
     <title>MoonComp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <%= yield %>
+  <body class="has-background-white-ter">
+    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <%= image_tag("brand-logo.png", width: 112, height: 100) %>
+        </a>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarLinks">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navbarLinks">
+        <div class="navbar-end">
+          <% if user_signed_in? %>
+            <div class="navbar-item">
+              Logged in as &nbsp;<strong class="has-text-white"><%= current_user.email %></strong>.
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable is-left">
+              <a class="navbar-link">
+                <i class="fa fa-cog"></i>
+              </a>
+              <div class="navbar-dropdown is-right">
+                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-item'  %>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          <% else %>
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <%= link_to 'Sign Up', new_user_registration_path, :class => 'button is-white' %>
+                  <%= link_to 'Login', new_user_session_path, :class => 'button is-white' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="container">
+        <% if notice %>
+          <div class="notification is-info"><%= notice %></div>
+        <% end %>
+        <% if alert %>
+          <div class="notification is-danger">
+            <%= alert %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </section>
   </body>
 </html>
